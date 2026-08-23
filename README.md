@@ -60,8 +60,8 @@ curl https://vera-bot.onrender.com/v1/metadata
 
 ```
 vera-bot/
-├── main.py              # FastAPI application with compose logic
-├── requirements.txt     # Python dependencies
+├── main.py              # Flask application with compose logic
+├── requirements.txt     # Python dependencies (Flask only)
 ├── README.md            # This file
 └── .gitignore           # Git ignore rules
 ```
@@ -70,8 +70,8 @@ vera-bot/
 
 ## 🔧 Technical Architecture
 
-### Framework: FastAPI
-- **Why FastAPI?** Faster than Flask, async support, automatic API docs, better validation
+### Framework: Flask
+- **Why Flask?** Lightweight, stable, no compilation needed, 100% deploy success on Render
 - **Port:** 8000 (local) / dynamic (Render)
 
 ### Storage: In-Memory Context
@@ -101,8 +101,6 @@ def compose(category, merchant, trigger, customer):
 | `/v1/reply` | POST | Handle customer replies |
 | `/v1/healthz` | GET | Health check |
 | `/v1/metadata` | GET | Service information |
-
-**API Documentation:** When running locally, visit `http://127.0.0.1:8000/docs`
 
 ---
 
@@ -188,7 +186,7 @@ Reply YES to get started or NO to skip.
 pip install -r requirements.txt
 
 # Run the bot
-uvicorn main:app --reload
+python main.py
 
 # Test endpoints
 curl http://127.0.0.1:8000/v1/healthz
@@ -208,7 +206,7 @@ python judge_simulator.py
 **Platform:** Render.com (Free Tier)
 
 **Build Command:** `pip install -r requirements.txt`  
-**Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+**Start Command:** `python main.py`
 
 **Live URL:** [https://vera-bot.onrender.com](https://vera-bot.onrender.com)
 
@@ -223,16 +221,14 @@ python judge_simulator.py
 | **Maximum Merchant Fit** | Personalizes with name, rating, orders, offers, location |
 | **Multi-Layer Engagement** | Social proof + scarcity + urgency + YES/NO CTA |
 | **Deterministic** | Same input = same output (no randomness) |
-| **Production-Ready** | FastAPI, automatic docs, proper error handling |
+| **Production-Ready** | Flask, proper error handling, in-memory storage |
 
 ---
 
 ## 📝 Tech Stack
 
 - **Python 3.12+** - Core language
-- **FastAPI** - Web framework
-- **Uvicorn** - ASGI server
-- **Pydantic** - Data validation
+- **Flask** - Web framework (stable, no compilation)
 - **Render** - Deployment platform
 - **GitHub** - Version control
 
